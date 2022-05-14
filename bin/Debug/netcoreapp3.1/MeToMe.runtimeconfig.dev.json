@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Radisa\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Radisa\\.nuget\\packages"
+    ]
+  }
+}
