@@ -99,6 +99,33 @@ namespace MeToMe.Controllers
             return Redirect($"/actor/{newRole.ActorId}");
         }
 
+        [HttpGet("movie/delete/{movieId}")]
+        public IActionResult deleteMovie (int movieId)
+        {
+            Movie mtd = _context.Movies.SingleOrDefault( m => m.MovieId == movieId);
+            _context.Movies.Remove(mtd);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("actor/delete/{actId}")]
+        public IActionResult deleteActor (int actId)
+        {
+            Actor atd = _context.Actors.SingleOrDefault( m => m.ActorId == actId);
+            _context.Actors.Remove(atd);
+            _context.SaveChanges();
+            return RedirectToAction("Actors");
+        }
+
+        [HttpGet("delete/cast/{actId}/{movId}")]
+        public IActionResult deleteCast (int actId, int movId)
+        {
+            Cast ctd = _context.Cast.SingleOrDefault( m => m.ActorId == actId && m.MovieId == movId);
+            _context.Cast.Remove(ctd);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

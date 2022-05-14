@@ -7,10 +7,12 @@
     @{
         foreach(Cast a in Model.ActedIn)
         {
-            <li>@a.Movie.Title</li>
+            <li>@a.Movie.Title <a href="/delete/cast/@Model.ActorId/@a.Movie.MovieId">X</a></li>
         }
     }
 </ul>
+<a href="/actor/delete/@Model.ActorId" class="btn btn-danger">Delete</a>
+
 
 <form action="/addToFilm" method="post">
     <div class="form-group">
@@ -19,7 +21,10 @@
             @{
                 foreach(Movie a in ViewBag.allMovies)
                 {
-                    <option value="@a.MovieId"> @a.Title</option>
+                    if(!Model.ActedIn.Any(s => s.MovieId == a.MovieId ))
+                    {
+                        <option value="@a.MovieId"> @a.Title</option>
+                    }
                 }
             }
         </select>

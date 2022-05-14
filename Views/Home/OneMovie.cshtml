@@ -8,11 +8,11 @@
     @{
         foreach(Cast a in Model.CastList)
         {
-            <li>@a.Actor.FirstName @a.Actor.LastName</li>
+            <li>@a.Actor.FirstName @a.Actor.LastName <a href="/delete/cast/@a.ActorId/@Model.MovieId">X</a></li>
         }
     }
 </ul>
-
+<a href="/movie/delete/@Model.MovieId" class="btn btn-danger">Delete</a>
 
 <form action="/addToCast" method="post">
     <div class="form-group">
@@ -21,7 +21,10 @@
             @{
                 foreach(Actor a in ViewBag.allActors)
                 {
+                    if(!Model.CastList.Any(s => s.ActorId == a.ActorId))
+                {
                     <option value="@a.ActorId"> @a.FirstName @a.LastName</option>
+                }
                 }
             }
         </select>
